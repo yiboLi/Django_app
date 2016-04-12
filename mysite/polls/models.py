@@ -9,7 +9,8 @@ class Question(models.Model): #Each model is represented by a class that subclas
     def __str__(self):
         return self.question_text
     def was_published_recently(self):
-        return self.pub_date >= timezone.now - datetime.timedelta(days=1)
+        now = timezone.now()
+        return now - datetime.timedelta(days=1) <= self.pub_date <= now
     #Each model has a number of class variables, each of which represents a database field in the model.
     
 class Choice(models.Model):
